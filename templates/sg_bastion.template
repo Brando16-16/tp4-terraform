@@ -1,0 +1,25 @@
+resource "aws_security_group" "sg_<###ITEM_NAME###>" {
+  name        = "${var.project_name}-sg-<###ITEM_NAME###>"
+  description = "SG pour le Bastion Host"
+  vpc_id      = <###PARAM_1###>
+
+  ingress {
+    description = "SSH depuis mon poste de travail uniquement"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.my_ip]
+  }
+
+  egress {
+    description = "Tout le trafic sortant"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.project_name}-sg-<###ITEM_NAME###>"
+  }
+}

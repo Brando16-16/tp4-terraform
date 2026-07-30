@@ -1,0 +1,13 @@
+# Règle egress TEMPORAIRE pour permettre apt/docker/nginx de sortir vers
+# Internet pendant la configuration initiale (Terraform supprime la règle
+# "allow all outbound" par défaut d'AWS dès qu'un security group n'a aucun
+# bloc egress complet). À retirer du infra.csv une fois les logiciels
+# installés, pour revenir à une sortie strictement limitée.
+resource "aws_security_group_rule" "sgrule_egress_temp_<###ITEM_NAME###>" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = <###PARAM_1###>
+}

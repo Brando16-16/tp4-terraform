@@ -1,0 +1,9 @@
+resource "aws_security_group" "sg_<###ITEM_NAME###>" {
+  name        = "${var.project_name}-sg-<###ITEM_NAME###>"
+  description = "SG pour le Serveur Web"
+  vpc_id      = <###PARAM_1###>
+
+  tags = {
+    Name = "${var.project_name}-sg-<###ITEM_NAME###>"
+  }
+}

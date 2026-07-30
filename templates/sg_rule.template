@@ -1,0 +1,8 @@
+resource "aws_security_group_rule" "sgrule_<###ITEM_NAME###>" {
+  type                     = "ingress"
+  from_port                = <###PARAM_3###>
+  to_port                  = <###PARAM_3###>
+  protocol                 = "tcp"
+  security_group_id        = <###PARAM_1###>
+  source_security_group_id = <###PARAM_2###>
+}

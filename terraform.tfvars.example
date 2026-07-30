@@ -1,0 +1,5 @@
+# Copie ce fichier en "terraform.tfvars" et renseigne ta propre IP publique.
+# terraform.tfvars ne doit PAS être commité sur git (il est déjà listé dans
+# .gitignore) car il contient une valeur spécifique à ta machine.
+
+my_ip = "TON_IP_PUBLIQUE/32"   # ex: "90.12.34.56/32" — trouve la tienne sur https://www.whatismyip.com

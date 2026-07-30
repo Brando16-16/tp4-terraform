@@ -1,0 +1,9 @@
+resource "aws_subnet" "subnet_<###ITEM_NAME###>" {
+  vpc_id            = <###PARAM_2###>
+  cidr_block        = "<###PARAM_1###>"
+  availability_zone = var.az
+
+  tags = {
+    Name = "${var.project_name}-subnet-<###ITEM_NAME###>"
+  }
+}

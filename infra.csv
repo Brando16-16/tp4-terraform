@@ -1,0 +1,17 @@
+vpc;admin;10.2.0.0/16
+subnet;public;10.2.1.0/24#aws_vpc.vpc_admin.id
+subnet;private;10.2.2.0/24#aws_vpc.vpc_admin.id
+internet_gateway;main;aws_vpc.vpc_admin.id
+route_table;main;aws_vpc.vpc_admin.id#aws_internet_gateway.internet_gateway_main.id
+route_table_association;public;aws_subnet.subnet_public.id#aws_route_table.route_table_main.id
+route_table_association;private;aws_subnet.subnet_private.id#aws_route_table.route_table_main.id
+sg_bastion;bastion;aws_vpc.vpc_admin.id
+sg_web;web;aws_vpc.vpc_admin.id
+sg_proxy;proxy;aws_vpc.vpc_admin.id#aws_security_group.sg_bastion.id#aws_security_group.sg_web.id
+sg_rule;web_from_proxy;aws_security_group.sg_web.id#aws_security_group.sg_proxy.id#8080
+sg_rule;web_from_bastion;aws_security_group.sg_web.id#aws_security_group.sg_bastion.id#22
+ec2;bastion;aws_subnet.subnet_public.id#aws_security_group.sg_bastion.id#true
+ec2;proxy;aws_subnet.subnet_public.id#aws_security_group.sg_proxy.id#true
+ec2;web;aws_subnet.subnet_private.id#aws_security_group.sg_web.id#false
+sg_egress_all_temp;web;aws_security_group.sg_web.id
+sg_egress_all_temp;proxy;aws_security_group.sg_proxy.id

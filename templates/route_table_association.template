@@ -1,0 +1,4 @@
+resource "aws_route_table_association" "route_table_association_<###ITEM_NAME###>" {
+  subnet_id      = <###PARAM_1###>
+  route_table_id = <###PARAM_2###>
+}

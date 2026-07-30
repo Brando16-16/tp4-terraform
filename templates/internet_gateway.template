@@ -1,0 +1,7 @@
+resource "aws_internet_gateway" "internet_gateway_<###ITEM_NAME###>" {
+  vpc_id = <###PARAM_1###>
+
+  tags = {
+    Name = "${var.project_name}-igw-<###ITEM_NAME###>"
+  }
+}

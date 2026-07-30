@@ -1,0 +1,27 @@
+data "aws_ami" "ami_<###ITEM_NAME###>" {
+  most_recent = true
+  owners      = ["099720109477"]
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-*-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
+resource "aws_instance" "ec2_<###ITEM_NAME###>" {
+  ami                         = data.aws_ami.ami_<###ITEM_NAME###>.id
+  instance_type               = var.instance_type
+  key_name                    = var.key_name
+  subnet_id                   = <###PARAM_1###>
+  vpc_security_group_ids      = [<###PARAM_2###>]
+  associate_public_ip_address = <###PARAM_3###>
+
+  tags = {
+    Name = "<###ITEM_NAME###>"
+  }
+}
