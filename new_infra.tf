@@ -84,7 +84,6 @@ resource "aws_security_group" "sg_bastion" {
     Name = "${var.project_name}-sg-bastion"
   }
 }
-
 resource "aws_security_group" "sg_web" {
   name        = "${var.project_name}-sg-web"
   description = "SG pour le Serveur Web"
@@ -126,8 +125,8 @@ resource "aws_security_group" "sg_proxy" {
 
   egress {
     description     = "HTTP applicatif uniquement vers le Serveur Web"
-    from_port       = var.app_port
-    to_port         = var.app_port
+    from_port       = 8080
+    to_port         = 8080
     protocol        = "tcp"
     security_groups = [aws_security_group.sg_web.id]
   }
@@ -136,7 +135,6 @@ resource "aws_security_group" "sg_proxy" {
     Name = "${var.project_name}-sg-proxy"
   }
 }
-
 resource "aws_security_group_rule" "sgrule_web_from_proxy" {
   type                     = "ingress"
   from_port                = 8080

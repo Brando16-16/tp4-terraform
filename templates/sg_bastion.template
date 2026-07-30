@@ -5,8 +5,8 @@ resource "aws_security_group" "sg_<###ITEM_NAME###>" {
 
   ingress {
     description = "SSH depuis mon poste de travail uniquement"
-    from_port   = 22
-    to_port     = 22
+    from_port   = <###PARAM_2###>
+    to_port     = <###PARAM_2###>
     protocol    = "tcp"
     cidr_blocks = [var.my_ip]
   }

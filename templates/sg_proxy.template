@@ -5,32 +5,32 @@ resource "aws_security_group" "sg_<###ITEM_NAME###>" {
 
   ingress {
     description = "HTTP depuis Internet"
-    from_port   = 80
-    to_port     = 80
+    from_port   = <###PARAM_4###>
+    to_port     = <###PARAM_4###>
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
     description = "HTTPS depuis Internet"
-    from_port   = 443
-    to_port     = 443
+    from_port   = <###PARAM_5###>
+    to_port     = <###PARAM_5###>
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
     description     = "SSH uniquement depuis le Bastion Host"
-    from_port       = 22
-    to_port         = 22
+    from_port       = <###PARAM_6###>
+    to_port         = <###PARAM_6###>
     protocol        = "tcp"
     security_groups = [<###PARAM_2###>]
   }
 
   egress {
     description     = "HTTP applicatif uniquement vers le Serveur Web"
-    from_port       = var.app_port
-    to_port         = var.app_port
+    from_port       = <###PARAM_7###>
+    to_port         = <###PARAM_7###>
     protocol        = "tcp"
     security_groups = [<###PARAM_3###>]
   }
